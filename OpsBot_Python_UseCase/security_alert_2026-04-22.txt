@@ -1,0 +1,29 @@
+
+ ---- OPSBOT SECURITY ALERT REPORT ----
+Generated on: 2026-04-22
+Source file:  server.log
+
+--- SUMMARY (Error Frequency) ---
+CRITICAL: 3 occurrences
+ERROR: 6 occurrences
+FAILED LOGIN: 7 occurrences
+Total alerts found: 16
+
+--- DETAILED ALERT LOG ---
+
+2024-07-15 00:07:18 ERROR Disk I/O timeout on /var/data partition
+2024-07-15 00:11:03 FAILED LOGIN Attempt from IP 192.168.1.45 - user: guest
+2024-07-15 00:11:45 FAILED LOGIN Attempt from IP 192.168.1.45 - user: root
+2024-07-15 00:14:22 ERROR Unable to reach external API endpoint /payment/verify
+2024-07-15 00:16:38 FAILED LOGIN Attempt from IP 203.0.113.77 - user: admin
+2024-07-15 00:19:55 CRITICAL CPU usage at 97% - system overloaded
+2024-07-15 00:23:14 ERROR Database query timed out after 30 seconds
+2024-07-15 00:25:45 FAILED LOGIN Attempt from IP 203.0.113.77 - user: admin
+2024-07-15 00:26:30 FAILED LOGIN Attempt from IP 203.0.113.77 - user: superuser
+2024-07-15 00:28:11 CRITICAL Memory usage exceeded 95% threshold - possible memory leak
+2024-07-15 00:30:05 ERROR SSL certificate expiring in 3 days - renew immediately
+2024-07-15 00:32:45 FAILED LOGIN Attempt from IP 10.0.0.99 - user: root
+2024-07-15 00:34:55 ERROR Connection refused by remote server 192.168.5.10:3306
+2024-07-15 00:37:22 CRITICAL Unhandled exception in payment module - NullPointerException
+2024-07-15 00:41:30 FAILED LOGIN Attempt from IP 203.0.113.77 - user: alice
+2024-07-15 00:43:00 ERROR Log rotation failed - permission denied on /var/log/app

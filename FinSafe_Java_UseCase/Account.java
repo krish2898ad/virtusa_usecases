@@ -83,14 +83,14 @@ public class Account {
             int i = 1;
             for (double txn : transactionHistory) {
                 if (txn > 0) {
-                    System.out.printf("CREDIT  + Rs.", i, txn);
+                    System.out.printf("%d. CREDIT  + Rs.%.2f%n", i, txn);
                 } else {
-                    System.out.printf("DEBIT   - Rs.", i, Math.abs(txn));
+                    System.out.printf("%d. DEBIT   - Rs.%.2f%n", i, Math.abs(txn));
                 }
                 i++;
             }
         }
 
-        System.out.printf("Current Balance: Rs.", balance);
+        System.out.printf("Current Balance: Rs.%.2f%n", balance);
     }
 }
