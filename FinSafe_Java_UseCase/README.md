@@ -1,15 +1,13 @@
 # FinSafe Wallet
 
-A secure, console-based Java banking application that simulates real-world wallet operations — including multi-user account management, authentication, deposits, withdrawals, and mini-statement generation.
+A secure, console-based Java application that simulates real-world wallet operations — including multi-user account management, authentication, deposits, withdrawals, and mini-statement generation.
 
----
 
 ## Overview
 
 **FinSafe Wallet** is a lightweight Java console application that models the core functionalities of a digital wallet.
-It supports **multiple users**, enforces secure password policies, tracks recent transactions, and uses clean separation of logic via a service layer.
+It supports **multiple users**, enforces secure password policies, tracks recent transactions.
 
----
 
 ## Project Structure
 
@@ -18,7 +16,6 @@ It supports **multiple users**, enforces secure password policies, tracks recent
 * Account.java
 * InSufficientFundsException.java
 
----
 
 ## Features
 
@@ -32,7 +29,6 @@ It supports **multiple users**, enforces secure password policies, tracks recent
 * Real-time balance tracking
 * Clean separation of UI and business logic
 
----
 
 ## Getting Started
 
@@ -48,7 +44,6 @@ javac *.java
 java FinSafeApp
 ```
 
----
 
 ## Usage
 
@@ -65,9 +60,8 @@ FinSafe Wallet
 Choice:
 ```
 
----
 
-## Class Reference
+## Classes
 
 ### FinSafeApp
 
@@ -81,7 +75,6 @@ Handles user interaction and menu flow.
 * start() – Runs the menu loop
 * main(String[]) – Entry point
 
----
 
 ### AccountService
 
@@ -90,10 +83,7 @@ Handles business logic and manages multiple accounts.
 * createAccount(String, double, String) – Creates account with unique username
 * login(String, String) – Validates credentials and returns account
 
----
-
 ### Account
-
 Represents a wallet account.
 
 * deposit(double) – Adds money and records transaction
@@ -104,13 +94,10 @@ Represents a wallet account.
 * getBalance() – Returns current balance
 * getPassword() – Returns password
 
----
 
 ### InSufficientFundsException
-
 Custom exception thrown when withdrawal exceeds available balance.
 
----
 
 ## Exception Handling
 
@@ -118,8 +105,6 @@ Custom exception thrown when withdrawal exceeds available balance.
 * Invalid number input → handled using NumberFormatException
 * Negative/zero amount → IllegalArgumentException
 * Wrong login → shows error message
-
----
 
 ## Password Policy
 
@@ -132,9 +117,6 @@ Password must satisfy:
 * At least one special character (@#$%^&+=!)
 
 Example: Kiran@123
-
----
-
 
 ## Demo
 

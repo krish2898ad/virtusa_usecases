@@ -18,8 +18,8 @@ OpsBot Log Automator is a Python script that analyzes server log files, detects 
 ## Project Structure
 
 * script.py
-* server.log
-* generated reports
+* opsbot.log
+* security_alert_YYYY-MM-DD.txt
 
 ## How to Run
 
@@ -29,7 +29,7 @@ OpsBot Log Automator is a Python script that analyzes server log files, detects 
    server.log
 
 3. Run the script:
-   python script.py
+   python opsbot.py
 
 ## Example Alerts Detected
 

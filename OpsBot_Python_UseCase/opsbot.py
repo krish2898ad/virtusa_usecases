@@ -28,12 +28,7 @@ def filter_critical_lines(lines):
 
         if match:
             alerts.append(line)
-            if "CRITICAL" in line:
-                count["CRITICAL"] += 1
-            elif "FAILED LOGIN" in line:
-                count["FAILED LOGIN"] += 1
-            elif "ERROR" in line:
-                count["ERROR"] += 1
+            count[match.group()] += 1
 
     return alerts, count
 
