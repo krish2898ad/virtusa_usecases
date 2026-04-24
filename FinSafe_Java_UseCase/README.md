@@ -1,29 +1,38 @@
 # FinSafe Wallet
 
-A secure, console-based Java banking application that simulates real-world wallet operations — including account creation, authentication, deposits, withdrawals, and mini-statement generation.
+A secure, console-based Java banking application that simulates real-world wallet operations — including multi-user account management, authentication, deposits, withdrawals, and mini-statement generation.
 
-
+---
 
 ## Overview
 
-**FinSafe Wallet** is a lightweight Java console application that models the core functionalities of a digital wallet. It enforces secure password policies, tracks up to 5 recent transactions, and raises meaningful custom exceptions.
+**FinSafe Wallet** is a lightweight Java console application that models the core functionalities of a digital wallet.
+It supports **multiple users**, enforces secure password policies, tracks recent transactions, and uses clean separation of logic via a service layer.
+
+---
 
 ## Project Structure
-- FinSafeApp.java
-- Account.java
-- InSufficientFundsException.java
 
+* FinSafeApp.java
+* AccountService.java
+* Account.java
+* InSufficientFundsException.java
+
+---
 
 ## Features
 
--  Account creation with secure password validation
--  Login/authentication system
--  Deposit and withdrawal operations
--  Custom exception for insufficient funds (`InSufficientFundsException`)
--  Mini-statement showing last 5 transactions (CREDIT/DEBIT)
--  Real-time balance tracking
+* Multi-user account system using HashMap
+* Unique username enforcement
+* Secure password validation
+* Login/authentication system
+* Deposit and withdrawal operations
+* Custom exception for insufficient funds (InSufficientFundsException)
+* Mini-statement showing last 5 transactions (CREDIT/DEBIT)
+* Real-time balance tracking
+* Clean separation of UI and business logic
 
-
+---
 
 ## Getting Started
 
@@ -39,6 +48,7 @@ javac *.java
 java FinSafeApp
 ```
 
+---
 
 ## Usage
 
@@ -55,23 +65,32 @@ FinSafe Wallet
 Choice:
 ```
 
-Navigate by entering the number corresponding to the desired action.
-
+---
 
 ## Class Reference
 
 ### FinSafeApp
 
-The main class that handles user interaction.
+Handles user interaction and menu flow.
 
-* createAccount() – Creates a new account after validating input
-* login() – Authenticates user credentials
-* deposit() – Accepts amount and calls account deposit
-* withdraw() – Accepts amount and performs withdrawal
+* createAccount() – Takes input and delegates account creation
+* login() – Authenticates user via service layer
+* deposit() – Deposits money into logged-in account
+* withdraw() – Withdraws money with validation
 * statement() – Displays mini statement
-* isValidPassword(String) – Validates password rules
-* main(String[]) – Runs the menu loop
+* start() – Runs the menu loop
+* main(String[]) – Entry point
 
+---
+
+### AccountService
+
+Handles business logic and manages multiple accounts.
+
+* createAccount(String, double, String) – Creates account with unique username
+* login(String, String) – Validates credentials and returns account
+
+---
 
 ### Account
 
@@ -85,11 +104,13 @@ Represents a wallet account.
 * getBalance() – Returns current balance
 * getPassword() – Returns password
 
+---
 
 ### InSufficientFundsException
 
-Custom exception thrown when withdrawal exceeds balance.
+Custom exception thrown when withdrawal exceeds available balance.
 
+---
 
 ## Exception Handling
 
@@ -98,6 +119,7 @@ Custom exception thrown when withdrawal exceeds balance.
 * Negative/zero amount → IllegalArgumentException
 * Wrong login → shows error message
 
+---
 
 ## Password Policy
 
@@ -110,6 +132,9 @@ Password must satisfy:
 * At least one special character (@#$%^&+=!)
 
 Example: Kiran@123
+
+---
+
 
 ## Demo
 

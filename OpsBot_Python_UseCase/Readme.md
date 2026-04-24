@@ -15,6 +15,12 @@ OpsBot Log Automator is a Python script that analyzes server log files, detects 
 * Displays summary in console
 * Calculates output file size
 
+## Project Structure
+
+* script.py
+* server.log
+* generated reports
+
 ## How to Run
 
 1. Make sure Python is installed
@@ -25,6 +31,11 @@ OpsBot Log Automator is a Python script that analyzes server log files, detects 
 3. Run the script:
    python script.py
 
+## Example Alerts Detected
+
+* CRITICAL
+* ERROR
+* FAILED LOGIN
 
 
 ## Workflow
@@ -40,23 +51,15 @@ OpsBot Log Automator is a Python script that analyzes server log files, detects 
 
 * A report file is generated:
   security_alert_YYYY-MM-DD.txt
-  ![report](img/report.png)
+  ![terminal](img/terminal.png)
 
 * Report contains:
 
   * Error summary
   * Total alerts
   * Detailed alert logs
+  ![report](img/report.png)
 
-## Example Alerts Detected
 
-* CRITICAL
-* ERROR
-* FAILED LOGIN
 
-## Project Structure
-
-* script.py
-* server.log
-* generated reports
 

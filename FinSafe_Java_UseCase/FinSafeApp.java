@@ -2,20 +2,26 @@ import java.util.Scanner;
 
 public class FinSafeApp {
 
-    private static Scanner scanner = new Scanner(System.in);
-    private static Account account = null;
-    private static boolean isLoggedIn = false;
+    private Scanner scanner = new Scanner(System.in);
+    private AccountService service = new AccountService();
+
+    private Account currentAccount = null;
+    private boolean isLoggedIn = false;
 
     // Password validation
-    private static boolean isValidPassword(String password) {
-        return password.length() >= 8 && password.matches(".*[A-Z].*") && password.matches(".*[a-z].*")
-                && password.matches(".*\\d.*") && password.matches(".*[@#$%^&+=!].*");
+    private boolean isValidPassword(String password) {
+        return password.length() >= 8 &&
+                password.matches(".*[A-Z].*") &&
+                password.matches(".*[a-z].*") &&
+                password.matches(".*\\d.*") &&
+                password.matches(".*[@#$%^&+=!].*");
     }
 
     // Create Account
-    public static void createAccount() {
-        System.out.print("Enter name: ");
+    public void createAccount() {
+        System.out.print("Enter username: ");
         String name = scanner.nextLine();
+
         System.out.print("Enter opening balance: ");
         double balance;
 
@@ -36,34 +42,35 @@ public class FinSafeApp {
             return;
         }
 
-        account = new Account(name, balance, password);
-        System.out.println("Account created successfully!\n");
+        if (service.createAccount(name, balance, password)) {
+            System.out.println("Account created successfully!\n");
+        } else {
+            System.out.println("Username already exists!\n");
+        }
     }
 
     // Login
-    public static void login() {
-        if (account == null) {
-            System.out.println("No account found.\n");
-            return;
-        }
-        System.out.print("Enter name: ");
+    public void login() {
+
+        System.out.print("Enter username: ");
         String name = scanner.nextLine();
+
         System.out.print("Enter password: ");
         String pass = scanner.nextLine();
 
-        if (account.getAccountHolder().equals(name) &&
-                account.getPassword().equals(pass)) {
+        Account acc = service.login(name, pass);
 
+        if (acc != null) {
+            currentAccount = acc;
             isLoggedIn = true;
             System.out.println("Login successful!\n");
-
         } else {
             System.out.println("Invalid credentials\n");
         }
     }
 
     // Deposit
-    public static void deposit() {
+    public void deposit() {
         if (!isLoggedIn) {
             System.out.println("Login first!\n");
             return;
@@ -72,14 +79,14 @@ public class FinSafeApp {
         System.out.print("Enter amount: ");
         try {
             double amt = Double.parseDouble(scanner.nextLine());
-            account.deposit(amt);
+            currentAccount.deposit(amt);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
     // Withdraw
-    public static void withdraw() {
+    public void withdraw() {
         if (!isLoggedIn) {
             System.out.println("Login first!\n");
             return;
@@ -88,7 +95,7 @@ public class FinSafeApp {
         System.out.print("Enter amount: ");
         try {
             double amt = Double.parseDouble(scanner.nextLine());
-            account.processTransaction(amt);
+            currentAccount.processTransaction(amt);
         } catch (InSufficientFundsException e) {
             System.out.println(e.getMessage());
         } catch (Exception e) {
@@ -97,15 +104,16 @@ public class FinSafeApp {
     }
 
     // Statement
-    public static void statement() {
+    public void statement() {
         if (!isLoggedIn) {
             System.out.println("Login first!\n");
             return;
         }
-        account.printMiniStatement();
+        currentAccount.printMiniStatement();
     }
 
-    public static void main(String[] args) {
+    // Main loop moved to instance method
+    public void start() {
 
         while (true) {
             System.out.println("FinSafe Wallet");
@@ -142,5 +150,11 @@ public class FinSafeApp {
                     System.out.println("Invalid choice\n");
             }
         }
+    }
+
+    // Only main remains static
+    public static void main(String[] args) {
+        FinSafeApp app = new FinSafeApp();
+        app.start();
     }
 }
